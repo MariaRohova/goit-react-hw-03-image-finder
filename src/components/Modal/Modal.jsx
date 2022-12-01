@@ -1,8 +1,5 @@
 import { Component } from 'react';
-// import { createPortal } from 'react-dom';
-// import { Backdrop, ModalWrapper } from './Styled';
-
-const modalRoot = document.querySelector('#modal-root');
+import { ModalWindow, Overlay } from './Styled';
 
 export class Modal extends Component {
   onKeyDown = e => {
@@ -27,12 +24,11 @@ export class Modal extends Component {
 
   render() {
     return (
-      <div className="Overlay" onClick={this.onBackdropClick}>
-        <div className="Modal">
+      <Overlay className="Overlay" onClick={this.onBackdropClick}>
+        <ModalWindow className="Modal">
           <img src={this.props.url} alt="" />
-        </div>
-      </div>
-      
+        </ModalWindow>
+      </Overlay>
     );
   }
 }
