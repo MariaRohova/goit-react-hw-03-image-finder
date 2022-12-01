@@ -2,12 +2,11 @@ import React, { Component } from 'react';
 import {searchImgFromApi} from 'Api/Api';
 import Searchbar from './Searchbar/Searchbar';
 import { ImageGallery } from './ImageGallery/ImageGallery';
-import { toast } from 'react-toastify';
 import { Button } from './Button/Button';
 import { Modal } from './Modal/Modal';
 import Loader from './Loader/Loader';
-import { ToastContainer } from 'react-toastify';
-
+import { toast, ToastContainer } from 'react-toastify';
+ import 'react-toastify/dist/ReactToastify.css';
 
 class App extends Component {
   state = {
@@ -41,7 +40,10 @@ class App extends Component {
 
       if (!data.hits.length) {
         this.setState({ loader: false });
-        return toast('Sorry, we not found images...');
+        return toast(' Sorry, we not found images...', {
+          position: 'top-right',
+          theme: 'light',
+        });
       }
 
       this.setState(prevState => ({
@@ -51,8 +53,9 @@ class App extends Component {
       }));
 
       if (this.state.page === Math.ceil(this.state.total / 12)) {
-        toast('Sorry, this is the end of list...');
+        toast('🦄 Sorry, this is the end of list...');
         this.setState({ hideBtn: false });
+        console.log()
       }
       return;
     } catch (error) {
